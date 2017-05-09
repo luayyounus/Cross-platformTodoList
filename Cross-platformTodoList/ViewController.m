@@ -7,8 +7,17 @@
 //
 
 #import "ViewController.h"
+#import "LoginViewController.h"
+
+@import Firebase;
+@import FirebaseAuth;
 
 @interface ViewController ()
+
+@property(strong,nonatomic) FIRDatabaseReference *userReference;
+@property(strong,nonatomic) FIRUser *currentUser;
+
+@property(nonatomic) FIRDatabaseHandle allTodosHandler;
 
 @end
 
@@ -16,14 +25,49 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self checkUserStatus];
+    //    [self setupFirebase];
 }
+
+-(void)checkUserStatus{
+    if (![[FIRAuth auth] currentUser]){
+        LoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        [self presentViewController:loginController animated:YES completion:nil];
+    } else {
+        [self setupFirebase];
+        [self startMonitoringTodoUpdates];
+    }
+    return;
+}
+
+-(void)setupFirebase{
+    FIRDatabaseReference *databaseReference = [[FIRDatabase database]reference];
+    self.currentUser = [[FIRAuth auth]currentUser];
+    self.userReference = [[databaseReference child:@"users"] child:self.currentUser.uid];
+    NSLog(@"USER REFEREE: %@",self.userReference);
+}
+-(void)startMonitoringTodoUpdates{
+    self.allTodosHandler = [[self.userReference child:@"todos"]observeEventType:FIRDataEventTypeValue andPreviousSiblingKeyWithBlock:^(FIRDataSnapshot * _Nonnull snapshot, NSString * _Nullable prevKey) {
+        
+        //        NSMutableArray *allTodos = [[NSMutableArray alloc]init];
+        for (FIRDataSnapshot *child in snapshot.children) {
+            NSDictionary *todoData = child.value;
+            
+            NSString *todoTitle = todoData[@"title"];
+            NSString *todoContent = todoData[@"content"];
+            
+            //append new todo to all todoArray//
+            
+            NSLog(@"Todo Title: %@ - Content: %@",todoTitle,todoContent);
+        }
+    }];
+}
+
 
 
 @end
