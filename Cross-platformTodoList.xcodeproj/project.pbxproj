@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010C50751EC184CB00DCD947 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C50741EC184CB00DCD947 /* SignupViewController.m */; };
+		010C50781EC1935700DCD947 /* ErrorCreateAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C50771EC1935700DCD947 /* ErrorCreateAccountViewController.m */; };
 		0190CC8A1EC146380061DA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0190CC891EC146380061DA8B /* main.m */; };
 		0190CC8D1EC146380061DA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0190CC8C1EC146380061DA8B /* AppDelegate.m */; };
 		0190CC901EC146380061DA8B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0190CC8F1EC146380061DA8B /* ViewController.m */; };
@@ -20,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		010C50731EC184CB00DCD947 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		010C50741EC184CB00DCD947 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		010C50761EC1935700DCD947 /* ErrorCreateAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorCreateAccountViewController.h; sourceTree = "<group>"; };
+		010C50771EC1935700DCD947 /* ErrorCreateAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorCreateAccountViewController.m; sourceTree = "<group>"; };
 		0190CC851EC146380061DA8B /* Cross-platformTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cross-platformTodoList.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0190CC891EC146380061DA8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0190CC8B1EC146380061DA8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,12 +111,16 @@
 		0190CCA21EC148C60061DA8B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0190CC8E1EC146380061DA8B /* ViewController.h */,
+				0190CC8F1EC146380061DA8B /* ViewController.m */,
 				0190CCA61EC14DAC0061DA8B /* NewTodoViewController.h */,
 				0190CCA71EC14DAC0061DA8B /* NewTodoViewController.m */,
 				0190CCA31EC14AE70061DA8B /* LoginViewController.h */,
 				0190CCA41EC14AE70061DA8B /* LoginViewController.m */,
-				0190CC8E1EC146380061DA8B /* ViewController.h */,
-				0190CC8F1EC146380061DA8B /* ViewController.m */,
+				010C50731EC184CB00DCD947 /* SignupViewController.h */,
+				010C50741EC184CB00DCD947 /* SignupViewController.m */,
+				010C50761EC1935700DCD947 /* ErrorCreateAccountViewController.h */,
+				010C50771EC1935700DCD947 /* ErrorCreateAccountViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -256,6 +266,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				010C50751EC184CB00DCD947 /* SignupViewController.m in Sources */,
+				010C50781EC1935700DCD947 /* ErrorCreateAccountViewController.m in Sources */,
 				0190CCA51EC14AE70061DA8B /* LoginViewController.m in Sources */,
 				0190CC901EC146380061DA8B /* ViewController.m in Sources */,
 				0190CC8D1EC146380061DA8B /* AppDelegate.m in Sources */,
