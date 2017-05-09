@@ -22,16 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self.childViewControllers[0] view].hidden = YES;
 }
 
 - (IBAction)loginPressed:(id)sender {
-    NSError *signOutError;
-    [[FIRAuth auth]signOut:&signOutError];
-    
     [[FIRAuth auth]signInWithEmail:self.emailTextField.text password:self.passwordTextField.text completion:^(FIRUser * _Nullable user, NSError * _Nullable error) {
         if (error){
             NSLog(@"Error Signing In: %@",error.localizedDescription);
+            [self.childViewControllers[0] view].hidden = NO;
+            
         }
         if(user){
             NSLog(@"Logged In User: %@",user);
@@ -42,7 +41,8 @@
 - (IBAction)dontHaveAccountPressed:(UIButton *)sender {
     SignupViewController *signupController = [self.storyboard instantiateViewControllerWithIdentifier:@"SignupViewController"];
     [self presentViewController:signupController animated:YES completion:nil];
-
 }
+
+
 
 @end

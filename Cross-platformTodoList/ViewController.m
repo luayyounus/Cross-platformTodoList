@@ -68,6 +68,12 @@
     }];
 }
 
+- (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
+    NSError *signOutError;
+    [[FIRAuth auth]signOut:&signOutError];
+}
+
+
 
 
 @end
