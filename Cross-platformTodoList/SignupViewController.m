@@ -7,6 +7,8 @@
 //
 
 #import "SignupViewController.h"
+#import "LoginViewController.h"
+
 @import FirebaseAuth;
 
 @interface SignupViewController ()
@@ -31,8 +33,6 @@
         if (error) {
             NSLog(@"Error Signing up new User: %@", error.localizedDescription);
             [self.childViewControllers[0] view].hidden = NO;
-            
-
         }
         if(user){
             NSLog(@"SignedUp: %@",user);
@@ -40,5 +40,10 @@
         }
     }];
 }
+
+- (IBAction)cancel:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end
