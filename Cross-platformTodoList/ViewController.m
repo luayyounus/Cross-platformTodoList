@@ -16,6 +16,7 @@
 
 @property(strong,nonatomic) FIRDatabaseReference *userReference;
 @property(strong,nonatomic) FIRUser *currentUser;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *todoHeightConstraint;
 
 @property(nonatomic) FIRDatabaseHandle allTodosHandler;
 
@@ -25,13 +26,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self checkUserStatus];
-    //    [self setupFirebase];
 }
 
 -(void)checkUserStatus{
@@ -67,6 +66,22 @@
         }
     }];
 }
+
+- (IBAction)plusButtonPressed:(UIBarButtonItem *)sender {
+    if (self.todoHeightConstraint.constant > 0){
+        self.todoHeightConstraint.constant = 0;
+        [UIView animateWithDuration:0.6 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    } else {
+        self.todoHeightConstraint.constant = 175;
+        [UIView animateWithDuration:0.6 animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+    
+}
+
 
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
     NSError *signOutError;

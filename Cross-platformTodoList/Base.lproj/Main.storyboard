@@ -22,10 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0I-G8-YJE">
-                                <rect key="frame" x="0.0" y="64" width="375" height="175"/>
+                            <containerView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0I-G8-YJE">
+                                <rect key="frame" x="0.0" y="64" width="375" height="0.0"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="175" id="kKS-SB-l9K"/>
+                                    <constraint firstAttribute="height" id="kKS-SB-l9K"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="fHV-fH-3wy" kind="embed" id="WLz-ES-OFR"/>
@@ -45,7 +45,15 @@
                                 <action selector="logoutButtonPressed:" destination="BYZ-38-t0r" id="nUz-LI-II7"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="1by-Qg-aKU">
+                            <connections>
+                                <action selector="plusButtonPressed:" destination="BYZ-38-t0r" id="bws-fE-Y2g"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="todoHeightConstraint" destination="kKS-SB-l9K" id="ScL-1n-rsw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -296,7 +304,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CrJ-uD-WkY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="uvz-5f-gya">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.0"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Todo Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lls-HS-cf0">
@@ -354,6 +362,10 @@
         <scene sceneID="HcP-Aj-xvA">
             <objects>
                 <viewController storyboardIdentifier="ErrorCreateAccountViewController" id="4E6-RB-q7I" customClass="ErrorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ere-cs-zaR"/>
+                        <viewControllerLayoutGuide type="bottom" id="WXb-KE-nRM"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="eKN-PC-kab">
                         <rect key="frame" x="0.0" y="0.0" width="335" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -404,6 +416,10 @@
         <scene sceneID="nGP-sq-bds">
             <objects>
                 <viewController id="gRz-wk-4ti" customClass="ErrorViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bSa-OT-yfN"/>
+                        <viewControllerLayoutGuide type="bottom" id="b1E-hy-uLO"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="F0q-9b-ygY">
                         <rect key="frame" x="0.0" y="0.0" width="335" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
