@@ -98,7 +98,7 @@
         <!--Completed-->
         <scene sceneID="hVa-fx-Lez">
             <objects>
-                <viewController storyboardIdentifier="Completed" id="P8E-14-OdN" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Completed" id="P8E-14-OdN" customClass="CompletedTodoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aUa-GF-Kxx"/>
                         <viewControllerLayoutGuide type="bottom" id="dkT-2e-i6C"/>
@@ -144,6 +144,9 @@
                     <tabBarItem key="tabBarItem" title="Completed" id="U6E-e8-xF9">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-15"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="tableView" destination="1Qo-gh-5yl" id="txp-ta-zCk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lzm-ZD-vQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

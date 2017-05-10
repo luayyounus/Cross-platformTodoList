@@ -7,6 +7,7 @@
 //
 
 #import "NewTodoViewController.h"
+#import "ViewController.h"
 
 @import Firebase;
 @import FirebaseAuth;
@@ -33,6 +34,10 @@
     
     [[newTodoReference child:@"title"] setValue:self.titleTextField.text];
     [[newTodoReference child:@"content"] setValue:self.contentTextField.text];
+    [[newTodoReference child:@"isCompleted"] setValue:@0];
+    [[newTodoReference child:@"key"]setValue:newTodoReference.key];
+    self.titleTextField.text = @"";
+    self.contentTextField.text = @"";
 }
 
 @end
