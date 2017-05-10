@@ -9,6 +9,7 @@
 #import "TVHomeViewController.h"
 #import "TvDetailsViewController.h"
 #import "Todo.h"
+#import "FirebaseAPI.h"
 
 @interface TVHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -23,6 +24,9 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
+        //later
+    }];
 }
 
 -(NSArray<Todo *> *)allTodos{
