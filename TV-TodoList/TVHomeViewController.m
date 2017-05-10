@@ -9,6 +9,7 @@
 #import "TVHomeViewController.h"
 #import "TvDetailsViewController.h"
 #import "Todo.h"
+#import "FirebaseAPI.h"
 
 @interface TVHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -23,22 +24,11 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-}
-
--(NSArray<Todo *> *)allTodos{
-    Todo *firstTodo = [[Todo alloc]init];
-    firstTodo.title = @"First Todo";
-    firstTodo.content = @"This is a todo";
-    
-    Todo *secondTodo = [[Todo alloc]init];
-    secondTodo.title = @"Second Todo";
-    secondTodo.content = @"This is another todo";
-    
-    Todo *thirdTodo = [[Todo alloc]init];
-    thirdTodo.title = @"First Todo";
-    thirdTodo.content = @"This is another todo";
-    
-    return @[firstTodo,secondTodo, thirdTodo];
+    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
+        NSLog(@"All Todos: %@",allTodos);
+        self.allTodos = allTodos;
+        [self.tableView reloadData];
+    }];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
