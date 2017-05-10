@@ -159,6 +159,6 @@ Pods/
 !*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
-# Credentials.h
+*Credentials.h
 
 # End of https://www.gitignore.io/api/macos,swift,xcode,objective-c

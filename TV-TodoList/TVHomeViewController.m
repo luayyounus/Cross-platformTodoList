@@ -25,24 +25,10 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
-        //later
+        NSLog(@"All Todos: %@",allTodos);
+        self.allTodos = allTodos;
+        [self.tableView reloadData];
     }];
-}
-
--(NSArray<Todo *> *)allTodos{
-    Todo *firstTodo = [[Todo alloc]init];
-    firstTodo.title = @"First Todo";
-    firstTodo.content = @"This is a todo";
-    
-    Todo *secondTodo = [[Todo alloc]init];
-    secondTodo.title = @"Second Todo";
-    secondTodo.content = @"This is another todo";
-    
-    Todo *thirdTodo = [[Todo alloc]init];
-    thirdTodo.title = @"First Todo";
-    thirdTodo.content = @"This is another todo";
-    
-    return @[firstTodo,secondTodo, thirdTodo];
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
