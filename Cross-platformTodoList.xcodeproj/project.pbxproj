@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		010C50751EC184CB00DCD947 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C50741EC184CB00DCD947 /* SignupViewController.m */; };
 		010C507B1EC1AE8400DCD947 /* ErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 010C507A1EC1AE8400DCD947 /* ErrorViewController.m */; };
+		018EC5F81EC2A6CB00D28F23 /* TvDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 018EC5F71EC2A6CB00D28F23 /* TvDetailsViewController.m */; };
+		018EC5F91EC2A6F800D28F23 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 019463A01EC242C400EAD800 /* Todo.m */; };
+		018EC5FA1EC2A70A00D28F23 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 019463A01EC242C400EAD800 /* Todo.m */; };
 		0190CC8A1EC146380061DA8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0190CC891EC146380061DA8B /* main.m */; };
 		0190CC8D1EC146380061DA8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0190CC8C1EC146380061DA8B /* AppDelegate.m */; };
 		0190CC901EC146380061DA8B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0190CC8F1EC146380061DA8B /* ViewController.m */; };
@@ -82,6 +85,8 @@
 		010C50741EC184CB00DCD947 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
 		010C50791EC1AE8400DCD947 /* ErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErrorViewController.h; sourceTree = "<group>"; };
 		010C507A1EC1AE8400DCD947 /* ErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ErrorViewController.m; sourceTree = "<group>"; };
+		018EC5F61EC2A6CB00D28F23 /* TvDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TvDetailsViewController.h; sourceTree = "<group>"; };
+		018EC5F71EC2A6CB00D28F23 /* TvDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TvDetailsViewController.m; sourceTree = "<group>"; };
 		0190CC851EC146380061DA8B /* Cross-platformTodoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cross-platformTodoList.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0190CC891EC146380061DA8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0190CC8B1EC146380061DA8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -268,6 +273,8 @@
 				019463B21EC246C200EAD800 /* Main.storyboard */,
 				019463BB1EC248B300EAD800 /* TVHomeViewController.h */,
 				019463BC1EC248B300EAD800 /* TVHomeViewController.m */,
+				018EC5F61EC2A6CB00D28F23 /* TvDetailsViewController.h */,
+				018EC5F71EC2A6CB00D28F23 /* TvDetailsViewController.m */,
 				019463B51EC246C200EAD800 /* Assets.xcassets */,
 				019463B71EC246C200EAD800 /* Info.plist */,
 				019463A91EC246C200EAD800 /* Supporting Files */,
@@ -539,6 +546,7 @@
 				0194638D1EC233AC00EAD800 /* ExtensionDelegate.m in Sources */,
 				0194638A1EC233AC00EAD800 /* InterfaceController.m in Sources */,
 				0194639E1EC23F3E00EAD800 /* TodoRowController.m in Sources */,
+				018EC5FA1EC2A70A00D28F23 /* Todo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,9 +554,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				018EC5F91EC2A6F800D28F23 /* Todo.m in Sources */,
 				019463AE1EC246C200EAD800 /* AppDelegate.m in Sources */,
 				019463AB1EC246C200EAD800 /* main.m in Sources */,
 				019463BD1EC248B300EAD800 /* TVHomeViewController.m in Sources */,
+				018EC5F81EC2A6CB00D28F23 /* TvDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,6 +855,7 @@
 				019463971EC233AC00EAD800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0194639A1EC233AC00EAD800 /* Build configuration list for PBXNativeTarget "WatchKit-TodoList" */ = {
 			isa = XCConfigurationList;
@@ -853,6 +864,7 @@
 				019463951EC233AC00EAD800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		019463B81EC246C200EAD800 /* Build configuration list for PBXNativeTarget "TV-TodoList" */ = {
 			isa = XCConfigurationList;
@@ -861,6 +873,7 @@
 				019463BA1EC246C200EAD800 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -49,6 +49,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vJ2-0g-bXp" kind="show" identifier="TvDetailsViewController" id="Fh0-P5-U4c"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -70,6 +73,38 @@
             </objects>
             <point key="canvasLocation" x="2208" y="75"/>
         </scene>
+        <!--Tv Details View Controller-->
+        <scene sceneID="EeU-9R-CC7">
+            <objects>
+                <viewController id="vJ2-0g-bXp" customClass="TvDetailsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yJY-GA-3wf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hag-Ue-6FQ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="erB-3A-rLN">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todo Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3UF-JX-BCA">
+                                <rect key="frame" x="844" y="517" width="233" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="3UF-JX-BCA" firstAttribute="centerY" secondItem="erB-3A-rLN" secondAttribute="centerY" id="dN4-c8-f4t"/>
+                            <constraint firstItem="3UF-JX-BCA" firstAttribute="centerX" secondItem="erB-3A-rLN" secondAttribute="centerX" id="ufi-it-pdj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="todoContent" destination="3UF-JX-BCA" id="3PK-1i-9LO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wO3-EC-5de" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4733" y="75"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="412-wb-tCq">
             <objects>
@@ -86,7 +121,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3y-Uy-gj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-461" y="-1197"/>
+            <point key="canvasLocation" x="2208" y="-1852"/>
         </scene>
     </scenes>
 </document>
