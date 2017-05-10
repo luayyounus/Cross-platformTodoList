@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="12029"/>
+    </dependencies>
+    <scenes>
+        <!--InterfaceController-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller identifier="InterfaceController" id="AgC-eL-Hgc" customClass="InterfaceController">
+                    <items>
+                        <label width="1" alignment="left" text="NUMBER OF TODOS" textAlignment="center" numberOfLines="0" id="KKi-tw-z0t"/>
+                        <label width="1" height="32" alignment="left" text="2" textAlignment="center" id="vNP-It-lJ1">
+                            <fontDescription key="font" type="system" pointSize="33"/>
+                        </label>
+                        <table alignment="left" id="WcF-Cx-C7x">
+                            <items>
+                                <tableRow identifier="TodoRowController" id="g1E-KR-JLe" customClass="TodoRowController">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" layout="vertical" id="b1F-8K-sGd">
+                                        <items>
+                                            <label alignment="left" text="Title" id="h5D-mI-pgX">
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                            <label alignment="left" text="Content" numberOfLines="0" id="51C-RD-ods"/>
+                                        </items>
+                                        <connections>
+                                            <segue destination="eD1-41-Ddj" kind="push" id="wPh-UR-dD5"/>
+                                        </connections>
+                                    </group>
+                                    <connections>
+                                        <outlet property="contentLabel" destination="51C-RD-ods" id="LdJ-E8-ucu"/>
+                                        <outlet property="titleLabel" destination="h5D-mI-pgX" id="le4-PN-4FS"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <connections>
+                        <outlet property="numberOfTodos" destination="vNP-It-lJ1" id="A56-fG-gpu"/>
+                        <outlet property="table" destination="WcF-Cx-C7x" id="djc-u7-7Ci"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="38" y="139"/>
+        </scene>
+        <!--addTodo-->
+        <scene sceneID="cWO-cM-dQU">
+            <objects>
+                <controller identifier="addTodo" id="E4j-2a-bXM" customClass="watchNewTodo">
+                    <items>
+                        <button width="1" alignment="left" title="Add Todo" id="eCJ-vg-lVg">
+                            <connections>
+                                <action selector="addTodo" destination="E4j-2a-bXM" id="mG0-Nf-xpy"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="149" y="513"/>
+        </scene>
+        <!--Watch Detail Interface Controller-->
+        <scene sceneID="Sf0-kV-6Oc">
+            <objects>
+                <controller id="eD1-41-Ddj" customClass="WatchDetailInterfaceController">
+                    <items>
+                        <label width="136" alignment="left" text="Details" textAlignment="center" numberOfLines="0" id="BHk-dE-YSr"/>
+                    </items>
+                    <connections>
+                        <outlet property="detailLabel" destination="BHk-dE-YSr" id="HFB-Of-Qxv"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="345" y="144"/>
+        </scene>
+    </scenes>
+</document>

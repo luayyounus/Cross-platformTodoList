@@ -23,8 +23,6 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-
-    
 }
 
 -(NSArray<Todo *> *)allTodos{
