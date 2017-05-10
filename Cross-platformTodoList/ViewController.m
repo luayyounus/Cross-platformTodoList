@@ -9,18 +9,20 @@
 #import "ViewController.h"
 #import "LoginViewController.h"
 #import "Todo.h"
+#import "CompletedTodoViewController.h"
 
 @import Firebase;
 @import FirebaseAuth;
 
-@interface ViewController ()<UITableViewDataSource>
+@interface ViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property(strong,nonatomic) FIRDatabaseReference *userReference;
 @property(strong,nonatomic) FIRUser *currentUser;
 @property(nonatomic) FIRDatabaseHandle allTodosHandler;
+@property(strong,nonatomic)CompletedTodoViewController *completedVC;
+
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *todoHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableTopConstraint;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic) NSMutableArray *allTodos;
 
@@ -31,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -59,6 +62,8 @@
     self.allTodosHandler = [[self.userReference child:@"todos"]observeEventType:FIRDataEventTypeValue andPreviousSiblingKeyWithBlock:^(FIRDataSnapshot * _Nonnull snapshot, NSString * _Nullable prevKey) {
         
         self.allTodos = [[NSMutableArray alloc]init];
+        self.completedVC = [[CompletedTodoViewController alloc]init];
+
         
         for (FIRDataSnapshot *child in snapshot.children) {
             NSDictionary *todoData = child.value;
@@ -66,9 +71,16 @@
             Todo *todo = [[Todo alloc]init];
             todo.title = todoData[@"title"];
             todo.content = todoData[@"content"];
+            todo.key = todoData[@"key"];
+            todo.isCompleted = todoData[@"isCompleted"];
+            Boolean booleanCompleted = todo.isCompleted.boolValue;
             
-            [self.allTodos addObject:todo];
-            NSLog(@"Todo Title: %@ - Content: %@",todo.title,todo.content);
+            if (booleanCompleted == 0) {
+                [self.allTodos addObject:todo];
+            } else {
+                [self.completedVC.allCompletedTodos addObject:todo];
+            }
+            NSLog(@"Todo Title: %@ - Content: %@ - isCompleted: %@",todo.title,todo.content,todo.isCompleted);
         }
         
         [self.tableView reloadData];
@@ -108,7 +120,13 @@
     cell.detailTextLabel.text = todo.content;
     
     return cell;
+}
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    Todo *todo = self.allTodos[indexPath.row];
+    self.userReference = [[FIRDatabase database]reference];
+    
+    [[[[[[self.userReference child:@"users"]child:self.currentUser.uid]child:@"todos"]child:todo.key]child:@"isCompleted"]setValue:@1];
 }
 
 @end
