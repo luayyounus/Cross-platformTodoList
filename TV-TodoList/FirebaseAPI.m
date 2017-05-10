@@ -23,7 +23,23 @@
         
         NSLog(@"Root Object:%@",rootObject);
         
-       
+        NSMutableArray *allTodos = [[NSMutableArray alloc]init];
+        
+        for (NSDictionary *userTodosDictionary in [rootObject allValues]) {
+            NSArray *userTodos = [userTodosDictionary[@"todos"] allValues];
+            
+            for (NSDictionary *todoDictionary in userTodos) {
+                Todo *newTodo = [[Todo alloc]init];
+                newTodo.title = todoDictionary[@"title"];
+                newTodo.content = todoDictionary[@"content"];
+                
+                [allTodos addObject:newTodo];
+            }
+        }
+        
+        if (completion) {
+            completion(allTodos);
+        }
     }] resume];
 }
 
