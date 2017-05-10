@@ -62,6 +62,10 @@
     return @[firstTodo,secondTodo, thirdTodo];
 }
 
+-(id)contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex{
+    return self.allTodos[rowIndex];
+}
+
 @end
 
 
