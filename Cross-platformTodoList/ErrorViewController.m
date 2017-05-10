@@ -20,7 +20,6 @@
 
 - (IBAction)closeSignupErrorPressed:(UIButton *)sender {
     self.view.hidden = YES;
-    
 }
 
 - (IBAction)closeLoginErrorPressed:(UIButton *)sender {
