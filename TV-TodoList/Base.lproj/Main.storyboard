@@ -71,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2208" y="75"/>
+            <point key="canvasLocation" x="2208" y="197"/>
         </scene>
         <!--Tv Details View Controller-->
         <scene sceneID="EeU-9R-CC7">
@@ -103,7 +103,57 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wO3-EC-5de" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4733" y="75"/>
+            <point key="canvasLocation" x="4814" y="197"/>
+        </scene>
+        <!--Tv Login View Controller-->
+        <scene sceneID="5Yb-kf-9Xa">
+            <objects>
+                <viewController storyboardIdentifier="TvLoginViewController" id="BdC-Fb-QEq" customClass="TvLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="G5h-M6-WKD"/>
+                        <viewControllerLayoutGuide type="bottom" id="jPQ-LF-BeU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="chM-x1-A7a">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Z3o-EB-JrU">
+                                <rect key="frame" x="460" y="490" width="1000" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1000" id="1xl-kx-me2"/>
+                                    <constraint firstAttribute="height" constant="100" id="Qmc-jV-29a"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pa1-44-FMT">
+                                <rect key="frame" x="1520" y="490" width="129" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Ueg-6Q-Map"/>
+                                </constraints>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Go"/>
+                                <connections>
+                                    <action selector="goButtonPressed:" destination="BdC-Fb-QEq" eventType="primaryActionTriggered" id="ZnE-UD-AZS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Z3o-EB-JrU" firstAttribute="centerY" secondItem="chM-x1-A7a" secondAttribute="centerY" id="7w9-UG-vwb"/>
+                            <constraint firstItem="Pa1-44-FMT" firstAttribute="centerY" secondItem="chM-x1-A7a" secondAttribute="centerY" id="UES-Fl-Sgw"/>
+                            <constraint firstItem="Pa1-44-FMT" firstAttribute="leading" secondItem="Z3o-EB-JrU" secondAttribute="trailing" constant="60" id="bhE-9g-Eyd"/>
+                            <constraint firstItem="Pa1-44-FMT" firstAttribute="height" secondItem="Z3o-EB-JrU" secondAttribute="height" id="hgj-Zy-Y4W"/>
+                            <constraint firstItem="Z3o-EB-JrU" firstAttribute="centerX" secondItem="chM-x1-A7a" secondAttribute="centerX" id="lrh-Z0-LwC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="email" destination="Z3o-EB-JrU" id="YRX-ob-sf8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jfp-eo-Frp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2208" y="1556"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="412-wb-tCq">

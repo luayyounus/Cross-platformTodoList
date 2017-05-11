@@ -10,6 +10,7 @@
 #import "TvDetailsViewController.h"
 #import "Todo.h"
 #import "FirebaseAPI.h"
+#import "TvLoginViewController.h"
 
 @interface TVHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -24,11 +25,19 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [self checkUserStatus];
     [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
         NSLog(@"All Todos: %@",allTodos);
         self.allTodos = allTodos;
         [self.tableView reloadData];
     }];
+}
+
+-(void)checkUserStatus{
+    if (!self.allTodos.firstObject.email) {
+        TvLoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TvLoginViewController"];
+        [self presentViewController:loginVC animated:YES completion:nil];
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
