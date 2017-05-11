@@ -19,7 +19,6 @@
 @property(strong,nonatomic) FIRDatabaseReference *userReference;
 @property(strong,nonatomic) FIRUser *currentUser;
 @property(nonatomic) FIRDatabaseHandle allTodosHandler;
-@property(strong,nonatomic)CompletedTodoViewController *completedVC;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *todoHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *tableTopConstraint;
@@ -62,8 +61,10 @@
     self.allTodosHandler = [[self.userReference child:@"todos"]observeEventType:FIRDataEventTypeValue andPreviousSiblingKeyWithBlock:^(FIRDataSnapshot * _Nonnull snapshot, NSString * _Nullable prevKey) {
         
         self.allTodos = [[NSMutableArray alloc]init];
-        self.completedVC = [[CompletedTodoViewController alloc]init];
-
+        
+        CompletedTodoViewController *CVC = self.tabBarController.viewControllers[1];
+        CVC.allCompletedTodos = [[NSMutableArray alloc]init];
+        
         
         for (FIRDataSnapshot *child in snapshot.children) {
             NSDictionary *todoData = child.value;
@@ -78,11 +79,11 @@
             if (booleanCompleted == 0) {
                 [self.allTodos addObject:todo];
             } else {
-                [self.completedVC.allCompletedTodos addObject:todo];
+                [CVC.allCompletedTodos addObject:todo];
             }
             NSLog(@"Todo Title: %@ - Content: %@ - isCompleted: %@",todo.title,todo.content,todo.isCompleted);
         }
-        
+
         [self.tableView reloadData];
     }];
 }
