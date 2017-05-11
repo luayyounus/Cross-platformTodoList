@@ -57,6 +57,7 @@
     self.userReference = [[databaseReference child:@"users"] child:self.currentUser.uid];
     NSLog(@"USER REFEREE: %@",self.userReference);
 }
+
 -(void)startMonitoringTodoUpdates{
     self.allTodosHandler = [[self.userReference child:@"todos"]observeEventType:FIRDataEventTypeValue andPreviousSiblingKeyWithBlock:^(FIRDataSnapshot * _Nonnull snapshot, NSString * _Nullable prevKey) {
         
@@ -128,6 +129,14 @@
     self.userReference = [[FIRDatabase database]reference];
     
     [[[[[[self.userReference child:@"users"]child:self.currentUser.uid]child:@"todos"]child:todo.key]child:@"isCompleted"]setValue:@1];
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+    Todo *todo = self.allTodos[indexPath.row];
+    self.userReference = [[FIRDatabase database]reference];
+    
+    [[[[[self.userReference child:@"users"]child:self.currentUser.uid]child:@"todos"]child:todo.key]removeValue];
+    
 }
 
 @end
