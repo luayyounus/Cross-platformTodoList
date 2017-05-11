@@ -74,6 +74,7 @@
             todo.title = todoData[@"title"];
             todo.content = todoData[@"content"];
             todo.key = todoData[@"key"];
+            todo.email = todoData[@"email"];
             todo.isCompleted = todoData[@"isCompleted"];
             Boolean booleanCompleted = todo.isCompleted.boolValue;
             

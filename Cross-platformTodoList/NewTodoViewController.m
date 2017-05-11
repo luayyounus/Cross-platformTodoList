@@ -36,6 +36,8 @@
     [[newTodoReference child:@"content"] setValue:self.contentTextField.text];
     [[newTodoReference child:@"isCompleted"] setValue:@0];
     [[newTodoReference child:@"key"]setValue:newTodoReference.key];
+    [[newTodoReference child:@"email"]setValue:currentUser.email];
+    
     self.titleTextField.text = @"";
     self.contentTextField.text = @"";
 }
