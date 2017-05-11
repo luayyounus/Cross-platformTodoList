@@ -14,5 +14,7 @@
 @property(strong,nonatomic) NSString *content;
 @property(strong,nonatomic) NSNumber *isCompleted;
 @property(strong,nonatomic) NSString *key;
+@property(strong,nonatomic) NSString *email;
+
 
 @end
