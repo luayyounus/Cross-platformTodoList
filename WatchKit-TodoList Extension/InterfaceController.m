@@ -10,7 +10,9 @@
 #import "Todo.h"
 #import "TodoRowController.h"
 
-@interface InterfaceController ()
+@import WatchConnectivity;
+
+@interface InterfaceController ()<WCSessionDelegate>
 
 @property(strong,nonatomic) NSArray<Todo *> *allTodos;
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTable *table;
@@ -22,6 +24,33 @@
 
 - (void)willActivate {
     [super willActivate];
+    
+    [[WCSession defaultSession] setDelegate:self];
+    [[WCSession defaultSession] activateSession];
+    
+    //the message parameter is where you would want to hand the iOS app new Todo data to save to Firebase
+    
+    [[WCSession defaultSession]sendMessage:@{} replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
+        NSArray *todoDictionaries = replyMessage[@"todos"];
+        
+        NSMutableArray *allTodos = [[NSMutableArray alloc]init];
+        
+        for (NSDictionary *todoObject in todoDictionaries) {
+            Todo *todo = [[Todo alloc]init];
+            todo.title = todoObject[@"title"];
+            todo.content = todoObject[@"content"];
+            [allTodos addObject:todo];
+        }
+        
+        self.allTodos = allTodos.copy;
+        NSString *stringifiedNumber = [NSString stringWithFormat:@"%lu",(unsigned long)self.allTodos.count];
+        [self.numberOfTodos setText:stringifiedNumber];
+        
+        [self setupTable];
+        
+    } errorHandler:^(NSError * _Nonnull error) {
+        NSLog(@"%@", error.localizedDescription);
+    }];
 }
 
 - (void)didDeactivate {
@@ -30,9 +59,6 @@
 
 - (void)awakeWithContext:(id)context {
     [super awakeWithContext:context];
-    
-    NSString *stringifiedNumber = [NSString stringWithFormat:@"%lu",(unsigned long)self.allTodos.count];
-    [self.numberOfTodos setText:stringifiedNumber];
     
     [self setupTable];
 }
@@ -44,22 +70,6 @@
         [rowController.titleLabel setText:self.allTodos[i].title];
         [rowController.contentLabel setText:self.allTodos[i].content];
     }
-}
-
--(NSArray<Todo *> *)allTodos{
-    Todo *firstTodo = [[Todo alloc]init];
-    firstTodo.title = @"First Todo";
-    firstTodo.content = @"This is a todo";
-    
-    Todo *secondTodo = [[Todo alloc]init];
-    secondTodo.title = @"Second Todo";
-    secondTodo.content = @"This is another todo";
-    
-    Todo *thirdTodo = [[Todo alloc]init];
-    thirdTodo.title = @"First Todo";
-    thirdTodo.content = @"This is another todo";
-    
-    return @[firstTodo,secondTodo, thirdTodo];
 }
 
 -(id)contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex{
