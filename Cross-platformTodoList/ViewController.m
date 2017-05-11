@@ -57,6 +57,7 @@
     self.userReference = [[databaseReference child:@"users"] child:self.currentUser.uid];
     NSLog(@"USER REFEREE: %@",self.userReference);
 }
+
 -(void)startMonitoringTodoUpdates{
     self.allTodosHandler = [[self.userReference child:@"todos"]observeEventType:FIRDataEventTypeValue andPreviousSiblingKeyWithBlock:^(FIRDataSnapshot * _Nonnull snapshot, NSString * _Nullable prevKey) {
         
