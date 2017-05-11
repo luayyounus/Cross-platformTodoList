@@ -16,17 +16,22 @@
 
 @implementation CompletedTodoViewController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.tableView.dataSource = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"todosChanged" object:nil];
+}
+
+-(void)updateTableView{
+    [self.tableView reloadData];
+}
+
 -(void)setAllCompletedTodos:(NSMutableArray *)allCompletedTodos{
     _allCompletedTodos = allCompletedTodos;
     for (Todo *eachTodo in allCompletedTodos) {
         NSLog(@"%@",eachTodo.content);
     }
     [self.tableView reloadData];
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.tableView.dataSource = self;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -41,6 +46,10 @@
     cell.detailTextLabel.text = currentTodo.content;
     
     return cell;
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"todosChanged" object:nil];
 }
 
 @end
