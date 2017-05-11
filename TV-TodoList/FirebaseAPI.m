@@ -32,7 +32,7 @@
                 Todo *newTodo = [[Todo alloc]init];
                 newTodo.title = todoDictionary[@"title"];
                 newTodo.content = todoDictionary[@"content"];
-                
+                newTodo.email = todoDictionary[@"email"];
                 [allTodos addObject:newTodo];
             }
         }
