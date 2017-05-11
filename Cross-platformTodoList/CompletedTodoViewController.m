@@ -18,8 +18,10 @@
 
 -(void)setAllCompletedTodos:(NSMutableArray *)allCompletedTodos{
     _allCompletedTodos = allCompletedTodos;
+    for (Todo *eachTodo in allCompletedTodos) {
+        NSLog(@"%@",eachTodo.content);
+    }
     [self.tableView reloadData];
-    
 }
 
 - (void)viewDidLoad {
