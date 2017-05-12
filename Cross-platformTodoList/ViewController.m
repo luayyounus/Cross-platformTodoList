@@ -33,8 +33,12 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"todosChanged" object:nil];
 }
 
+-(void)updateTableView{
+    [self.tableView reloadData];
+}
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self checkUserStatus];
@@ -66,7 +70,6 @@
         CompletedTodoViewController *CVC = self.tabBarController.viewControllers[1];
         CVC.allCompletedTodos = [[NSMutableArray alloc]init];
         
-        
         for (FIRDataSnapshot *child in snapshot.children) {
             NSDictionary *todoData = child.value;
             
@@ -86,7 +89,7 @@
             NSLog(@"Todo Title: %@ - Content: %@ - isCompleted: %@",todo.title,todo.content,todo.isCompleted);
         }
 
-        [self.tableView reloadData];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"todosChanged" object:nil];
     }];
 }
 
@@ -138,6 +141,10 @@
     
     [[[[[self.userReference child:@"users"]child:self.currentUser.uid]child:@"todos"]child:todo.key]removeValue];
     
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"todosChanged" object:nil];
 }
 
 @end
