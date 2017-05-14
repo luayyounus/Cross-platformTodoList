@@ -26,8 +26,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self checkUserStatus];
-    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
-        NSLog(@"All Todos: %@",allTodos);
+    [FirebaseAPI fetchAllTodos:@"" andCompletion:^(NSArray<Todo *> *allTodos) {
         self.allTodos = allTodos;
         [self.tableView reloadData];
     }];

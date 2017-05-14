@@ -21,12 +21,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
+    [FirebaseAPI fetchAllTodos:self.email.text andCompletion:^(NSArray<Todo *> *allTodos) {
         self.allTodos = allTodos;
     }];
 }
 - (IBAction)goButtonPressed:(UIButton *)sender {
     if (![self.email.text isEqualToString:self.allTodos.firstObject.email]) {
+        
         NSLog(@"Not FOUND");
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];

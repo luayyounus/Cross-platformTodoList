@@ -11,7 +11,8 @@
 
 @implementation FirebaseAPI
 
-+(void)fetchAllTodos:(AllTodosCompletion)completion{
++(void)fetchAllTodos:(NSString *)email andCompletion:(AllTodosCompletion)completion{
+    
     NSString *urlString = [NSString stringWithFormat:@"https://cross-platform-todo-list-4fe1e.firebaseio.com/users.json?auth=%@",APP_KEY];
     NSURL *databaseURL = [NSURL URLWithString:urlString];
     
@@ -26,16 +27,20 @@
         NSMutableArray *allTodos = [[NSMutableArray alloc]init];
         
         for (NSDictionary *userTodosDictionary in [rootObject allValues]) {
-            NSArray *userTodos = [userTodosDictionary[@"todos"] allValues];
             
-            for (NSDictionary *todoDictionary in userTodos) {
-                Todo *newTodo = [[Todo alloc]init];
-                newTodo.title = todoDictionary[@"title"];
-                newTodo.content = todoDictionary[@"content"];
-                newTodo.email = todoDictionary[@"email"];
-                [allTodos addObject:newTodo];
+            if ([email isEqualToString:rootObject[@"email"]]) {
+                NSArray *userTodos = [userTodosDictionary[@"todos"] allValues];
+                
+                for (NSDictionary *todoDictionary in userTodos) {
+                    Todo *newTodo = [[Todo alloc]init];
+                    newTodo.title = todoDictionary[@"title"];
+                    newTodo.content = todoDictionary[@"content"];
+                    newTodo.email = todoDictionary[@"email"];
+                    [allTodos addObject:newTodo];
+                }
             }
         }
+        NSLog(@" HERRREE %@",allTodos);
         
         if (completion) {
 //            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
