@@ -30,13 +30,13 @@
     FIRUser *currentUser = [[FIRAuth auth]currentUser];
     
     FIRDatabaseReference *userReference = [[databaseReference child:@"users"] child:currentUser.uid];
+    [[userReference child:@"email"] setValue:currentUser.email];
     FIRDatabaseReference *newTodoReference = [[userReference child:@"todos"] childByAutoId];
     
     [[newTodoReference child:@"title"] setValue:self.titleTextField.text];
     [[newTodoReference child:@"content"] setValue:self.contentTextField.text];
     [[newTodoReference child:@"isCompleted"] setValue:@0];
     [[newTodoReference child:@"key"]setValue:newTodoReference.key];
-    [[newTodoReference child:@"email"]setValue:currentUser.email];
     
     self.titleTextField.text = @"";
     self.contentTextField.text = @"";
