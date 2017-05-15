@@ -111,6 +111,8 @@
 - (IBAction)logoutButtonPressed:(UIBarButtonItem *)sender {
     NSError *signOutError;
     [[FIRAuth auth]signOut:&signOutError];
+    self.allTodos = nil;
+    [self.tableView reloadData];
     [self checkUserStatus];
 }
 

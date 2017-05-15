@@ -36,6 +36,8 @@
         if(user){
             NSLog(@"SignedUp: %@",user);
             [self dismissViewControllerAnimated:YES completion:nil];
+            [self.presentingViewController.presentingViewController dismissViewControllerAnimated:nil completion:nil];
+
         }
     }];
 }
