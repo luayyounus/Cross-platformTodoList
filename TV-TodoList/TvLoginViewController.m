@@ -31,7 +31,15 @@
             [[NSUserDefaults standardUserDefaults] synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
-            NSLog(@"Email doesn't exist in Database!");
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Incorrect Email" message:@"Please enter a valid Email Address" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [alert dismissViewControllerAnimated:YES completion:nil];
+            }];
+            
+            [alert addAction:okButton];
+            
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 }

@@ -144,13 +144,21 @@
                                     <action selector="goButtonPressed:" destination="BdC-Fb-QEq" eventType="primaryActionTriggered" id="ZnE-UD-AZS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please Enter your Email Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdU-zu-HcX">
+                                <rect key="frame" x="632" y="364" width="657" height="56"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="47"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Z3o-EB-JrU" firstAttribute="centerY" secondItem="chM-x1-A7a" secondAttribute="centerY" id="7w9-UG-vwb"/>
                             <constraint firstItem="Pa1-44-FMT" firstAttribute="centerY" secondItem="chM-x1-A7a" secondAttribute="centerY" id="UES-Fl-Sgw"/>
                             <constraint firstItem="Pa1-44-FMT" firstAttribute="leading" secondItem="Z3o-EB-JrU" secondAttribute="trailing" constant="60" id="bhE-9g-Eyd"/>
+                            <constraint firstItem="JdU-zu-HcX" firstAttribute="centerX" secondItem="chM-x1-A7a" secondAttribute="centerX" id="eU6-Xl-fdC"/>
                             <constraint firstItem="Pa1-44-FMT" firstAttribute="height" secondItem="Z3o-EB-JrU" secondAttribute="height" id="hgj-Zy-Y4W"/>
                             <constraint firstItem="Z3o-EB-JrU" firstAttribute="centerX" secondItem="chM-x1-A7a" secondAttribute="centerX" id="lrh-Z0-LwC"/>
+                            <constraint firstItem="Z3o-EB-JrU" firstAttribute="top" secondItem="JdU-zu-HcX" secondAttribute="bottom" constant="70" id="vP5-YZ-U6h"/>
                         </constraints>
                     </view>
                     <connections>
