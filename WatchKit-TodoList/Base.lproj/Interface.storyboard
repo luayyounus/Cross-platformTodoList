@@ -15,7 +15,7 @@
                 <controller identifier="InterfaceController" id="AgC-eL-Hgc" customClass="InterfaceController">
                     <items>
                         <label width="1" alignment="left" text="NUMBER OF TODOS" textAlignment="center" numberOfLines="0" id="KKi-tw-z0t"/>
-                        <label width="1" height="32" alignment="left" text="2" textAlignment="center" id="vNP-It-lJ1">
+                        <label width="1" height="32" alignment="left" textAlignment="center" id="vNP-It-lJ1">
                             <fontDescription key="font" type="system" pointSize="33"/>
                         </label>
                         <table alignment="left" id="WcF-Cx-C7x">

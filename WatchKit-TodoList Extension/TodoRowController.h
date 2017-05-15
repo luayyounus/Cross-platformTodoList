@@ -11,7 +11,6 @@
 
 @interface TodoRowController : NSObject
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceLabel *titleLabel;
-
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceLabel *contentLabel;
 
 @end
