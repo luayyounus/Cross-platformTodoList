@@ -12,7 +12,6 @@
 
 @interface TvLoginViewController ()
 
-@property (strong, nonatomic) NSArray<Todo *> *allTodos;
 @property (weak, nonatomic) IBOutlet UITextField *email;
 
 @end
@@ -24,15 +23,23 @@
 }
 
 - (IBAction)goButtonPressed:(UIButton *)sender {
+    
     [FirebaseAPI fetchAllTodos:self.email.text andCompletion:^(NSArray<Todo *> *allTodos) {
         self.allTodos = allTodos;
         if (self.allTodos.firstObject != nil) {
-            TVHomeViewController *TVHVC = [[TVHomeViewController alloc]init];
-            TVHVC.allTvTodos = allTodos;
+            [[NSUserDefaults standardUserDefaults] setObject:self.email.text forKey:@"email"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
             [self dismissViewControllerAnimated:YES completion:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"displayTodosOnTv" object:nil];
         } else {
-            NSLog(@"Email doesn't exist in Database!");
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Incorrect Email" message:@"Please enter a valid Email Address" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction *okButton = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [alert dismissViewControllerAnimated:YES completion:nil];
+            }];
+            
+            [alert addAction:okButton];
+            
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 }
