@@ -8,15 +8,12 @@
 
 #import "TVHomeViewController.h"
 #import "TvDetailsViewController.h"
-#import "Todo.h"
 #import "FirebaseAPI.h"
 #import "TvLoginViewController.h"
 
 @interface TVHomeViewController ()<UITableViewDataSource,UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray<Todo *> *allTodos;
-
 @end
 
 @implementation TVHomeViewController
@@ -25,32 +22,37 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"displayTodosOnTv" object:nil];
     [self checkUserStatus];
-    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
-        NSLog(@"All Todos: %@",allTodos);
-        self.allTodos = allTodos;
-        [self.tableView reloadData];
-    }];
 }
 
 -(void)checkUserStatus{
-    if (!self.allTodos.firstObject.email) {
-        TvLoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TvLoginViewController"];
-        [self presentViewController:loginVC animated:YES completion:nil];
-    }
+    TvLoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TvLoginViewController"];
+    [self presentViewController:loginVC animated:YES completion:nil];
+}
+
+-(void)setAllTvTodos:(NSArray<Todo *> *)allTvTodos{
+    _allTvTodos = allTvTodos;
+    NSLog(@"Todos inside the Setter: %@",self.allTvTodos);
+}
+
+- (void)reloadTableView{
+    NSLog(@"Todos outside the setter %@",self.allTvTodos);
+
+    [self.tableView reloadData];
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"number of row in section %@",self.allTvTodos);
+    return self.allTvTodos.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    
-    cell.textLabel.text = self.allTodos[indexPath.row].title;
-    cell.detailTextLabel.text = self.allTodos[indexPath.row].content;
+    cell.textLabel.text = self.allTvTodos[indexPath.row].title;
+    cell.detailTextLabel.text = self.allTvTodos[indexPath.row].content;
     
     return cell;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.allTodos.count;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -59,9 +61,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     [super prepareForSegue:segue sender:self];
-    Todo *todo = self.allTodos[self.tableView.indexPathForSelectedRow.row];
+    Todo *todo = self.allTvTodos[self.tableView.indexPathForSelectedRow.row];
     TvDetailsViewController *detailsVC = segue.destinationViewController;
     detailsVC.todo = todo;
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"displayTodosOnTv" object:nil];
 }
 
 @end
