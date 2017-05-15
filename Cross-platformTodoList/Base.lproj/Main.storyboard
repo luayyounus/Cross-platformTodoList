@@ -207,7 +207,7 @@
                                     <color key="titleColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="dontHaveAccountPressed:" destination="REa-ff-kf8" eventType="touchUpInside" id="ZCm-Gz-qT9"/>
+                                    <segue destination="1qe-BT-3w7" kind="show" id="sug-2f-5yu"/>
                                 </connections>
                             </button>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qkV-0H-eJo">
@@ -252,7 +252,7 @@
         <!--Signup View Controller-->
         <scene sceneID="VTO-3f-GL7">
             <objects>
-                <viewController storyboardIdentifier="SignupViewController" id="1qe-BT-3w7" customClass="SignupViewController" sceneMemberID="viewController">
+                <viewController id="1qe-BT-3w7" customClass="SignupViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OEq-9n-7WY"/>
                         <viewControllerLayoutGuide type="bottom" id="A6a-s7-eFn"/>
@@ -368,7 +368,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FGG-3f-vUH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="530" y="795"/>
+            <point key="canvasLocation" x="778" y="795"/>
         </scene>
         <!--Home-->
         <scene sceneID="u5l-QS-DLh">
@@ -506,7 +506,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kAK-pn-T8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="529" y="1419"/>
+            <point key="canvasLocation" x="777" y="1419"/>
         </scene>
         <!--Error View Controller-->
         <scene sceneID="nGP-sq-bds">

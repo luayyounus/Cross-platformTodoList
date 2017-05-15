@@ -38,11 +38,5 @@
         }
     }];
 }
-- (IBAction)dontHaveAccountPressed:(UIButton *)sender {
-    SignupViewController *signupController = [self.storyboard instantiateViewControllerWithIdentifier:@"SignupViewController"];
-    [self presentViewController:signupController animated:YES completion:nil];
-}
-
-
 
 @end
