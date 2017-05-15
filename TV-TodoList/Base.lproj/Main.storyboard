@@ -64,7 +64,13 @@
                             <constraint firstItem="ZWJ-QM-SKt" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="tYO-GM-Zhj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="TODO LIST" id="G5C-C8-dXM"/>
+                    <navigationItem key="navigationItem" title="TODO LIST" id="G5C-C8-dXM">
+                        <barButtonItem key="rightBarButtonItem" title="Logout" id="gGm-sh-9Uo">
+                            <connections>
+                                <action selector="logoutPressed:" destination="BYZ-38-t0r" id="edU-3J-wrB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="ZWJ-QM-SKt" id="ZWR-Kd-adp"/>
                     </connections>

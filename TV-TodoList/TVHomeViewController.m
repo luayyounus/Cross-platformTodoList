@@ -65,5 +65,12 @@
     TvDetailsViewController *detailsVC = segue.destinationViewController;
     detailsVC.todo = todo;
 }
+- (IBAction)logoutPressed:(UIBarButtonItem *)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"email"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    self.allTvTodos = @[];
+    [self.tableView reloadData];
+    [self checkUserStatus];
+}
 
 @end
