@@ -27,8 +27,7 @@
         NSMutableArray *allTodos = [[NSMutableArray alloc]init];
         
         for (NSDictionary *userTodosDictionary in [rootObject allValues]) {
-            
-            if ([email isEqualToString:rootObject[@"email"]]) {
+            if ([email isEqualToString:userTodosDictionary[@"email"]]) {
                 NSArray *userTodos = [userTodosDictionary[@"todos"] allValues];
                 
                 for (NSDictionary *todoDictionary in userTodos) {
@@ -40,12 +39,10 @@
                 }
             }
         }
-        NSLog(@" HERRREE %@",allTodos);
         
         if (completion) {
 //            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
 //                completion(allTodos);
-//
 //            }];
             
             //GCD
@@ -55,5 +52,6 @@
         }
     }] resume];
 }
+
 
 @end

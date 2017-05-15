@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Todo.h"
 
 @interface TVHomeViewController : UIViewController
+
+@property (strong, nonatomic) NSArray<Todo *> *allTvTodos;
 
 @end

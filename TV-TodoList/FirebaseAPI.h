@@ -14,4 +14,5 @@ typedef void(^AllTodosCompletion)(NSArray<Todo *> *allTodos);
 @interface FirebaseAPI : NSObject
 
 +(void)fetchAllTodos:(NSString *)email andCompletion:(AllTodosCompletion)completion;
+
 @end

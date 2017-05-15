@@ -66,7 +66,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="TODO LIST" id="G5C-C8-dXM"/>
                     <connections>
-                        <outlet property="tableView" destination="ZWJ-QM-SKt" id="Hr7-61-jvd"/>
+                        <outlet property="tableView" destination="ZWJ-QM-SKt" id="ZWR-Kd-adp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
