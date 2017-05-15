@@ -8,7 +8,7 @@
 
 #import "TvLoginViewController.h"
 #import "FirebaseAPI.h"
-
+#import "TVHomeViewController.h"
 
 @interface TvLoginViewController ()
 
@@ -21,18 +21,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [FirebaseAPI fetchAllTodos:self.email.text andCompletion:^(NSArray<Todo *> *allTodos) {
-        self.allTodos = allTodos;
-    }];
-}
-- (IBAction)goButtonPressed:(UIButton *)sender {
-    if (![self.email.text isEqualToString:self.allTodos.firstObject.email]) {
-        
-        NSLog(@"Not FOUND");
-    } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
 }
 
+- (IBAction)goButtonPressed:(UIButton *)sender {
+    [FirebaseAPI fetchAllTodos:self.email.text andCompletion:^(NSArray<Todo *> *allTodos) {
+        self.allTodos = allTodos;
+        if (self.allTodos.firstObject != nil) {
+            TVHomeViewController *TVHVC = [[TVHomeViewController alloc]init];
+            TVHVC.allTvTodos = allTodos;
+            [self dismissViewControllerAnimated:YES completion:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"displayTodosOnTv" object:nil];
+        } else {
+            NSLog(@"Email doesn't exist in Database!");
+        }
+    }];
+}
 
 @end
