@@ -22,28 +22,29 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadTableView) name:@"displayTodosOnTv" object:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
     [self checkUserStatus];
 }
 
 -(void)checkUserStatus{
-    TvLoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TvLoginViewController"];
-    [self presentViewController:loginVC animated:YES completion:nil];
-}
-
--(void)setAllTvTodos:(NSArray<Todo *> *)allTvTodos{
-    _allTvTodos = allTvTodos;
-    NSLog(@"Todos inside the Setter: %@",self.allTvTodos);
-}
-
-- (void)reloadTableView{
-    NSLog(@"Todos outside the setter %@",self.allTvTodos);
-
-    [self.tableView reloadData];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email = [userDefaults stringForKey:@"email"];
+    
+    if (!email) {
+        TvLoginViewController *loginVC = [self.storyboard instantiateViewControllerWithIdentifier:@"TvLoginViewController"];
+        [self presentViewController:loginVC animated:YES completion:nil];
+    } else {
+        [FirebaseAPI fetchAllTodos:email andCompletion:^(NSArray<Todo *> *allTodos) {
+            self.allTvTodos = allTodos;
+            [self.tableView reloadData];
+        }];
+    }
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"number of row in section %@",self.allTvTodos);
     return self.allTvTodos.count;
 }
 
@@ -51,7 +52,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     cell.textLabel.text = self.allTvTodos[indexPath.row].title;
     cell.detailTextLabel.text = self.allTvTodos[indexPath.row].content;
-    
     return cell;
 }
 
@@ -64,10 +64,6 @@
     Todo *todo = self.allTvTodos[self.tableView.indexPathForSelectedRow.row];
     TvDetailsViewController *detailsVC = segue.destinationViewController;
     detailsVC.todo = todo;
-}
-
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"displayTodosOnTv" object:nil];
 }
 
 @end
